@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "773930416587",
+    "firebase_url": "https://checklist-car-6bc81-default-rtdb.firebaseio.com",
+    "project_id": "checklist-car-6bc81",
+    "storage_bucket": "checklist-car-6bc81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773930416587:android:cbf663222598b2cded1e4e",
+        "android_client_info": {
+          "package_name": "br.com.cunha.auto_checklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773930416587-hsdaqpshmg7qr0puta1vl6j2r0tp7319.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTl-T2LKc1IDuEOQuvv4WVt0fETHXPGyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773930416587-hsdaqpshmg7qr0puta1vl6j2r0tp7319.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
