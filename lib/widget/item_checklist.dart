@@ -1,5 +1,5 @@
 import 'package:auto_checklist/models/checklistmodel.dart';
-import 'package:auto_checklist/screens/pdf_new.dart';
+import 'package:auto_checklist/screens/my_pdf.dart';
 import 'package:flutter/material.dart';
 
 class ItemChecklist extends StatelessWidget {
@@ -94,9 +94,6 @@ class ItemChecklist extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => MyPdf(checklist)),
                           );
-                          /*Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => ShareImage(checklist))
-                          );*/
                         },
                         child: Text(
                           'PDF',

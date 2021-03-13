@@ -1,6 +1,4 @@
-import 'package:auto_checklist/models/checklist_model.dart';
 import 'package:auto_checklist/models/user_model.dart';
-//import 'package:auto_checklist/screens/checklist_screen.dart';
 import 'package:auto_checklist/screens/checklist_screen2.dart';
 import 'package:auto_checklist/screens/login_screen.dart';
 import 'package:auto_checklist/screens/meuschecklist_screen.dart';
@@ -16,22 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModel<UserModel>(
       model: UserModel(),
-      child: ScopedModelDescendant<UserModel>(
-        builder: (context, child, model) {
-          return ScopedModel<ChecklistModel>(
-            model: ChecklistModel(model),
-            child: MaterialApp(
-              title: 'Flutter Demo',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-                primaryColor: Colors.lightBlue[700],
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              debugShowCheckedModeBanner: false,
-              home: HomePage(),
-            ),
-          );
-        },
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          primaryColor: Colors.lightBlue[700],
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
       ),
     );
   }
@@ -91,13 +82,6 @@ class HomePage extends StatelessWidget {
                     ),
                     SizedBox(height: 12),
                     Container(
-                      /*decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          width: 2,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),*/
                       height: 40,
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: RaisedButton(

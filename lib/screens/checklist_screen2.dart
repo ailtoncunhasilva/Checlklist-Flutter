@@ -382,7 +382,6 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                               ),
                             ),
                           ),
-                          //Divider(color: Colors.grey[400]),
                           Card(
                             elevation: 8,
                             margin: EdgeInsets.symmetric(
