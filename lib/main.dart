@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return ScopedModel<UserModel>(
       model: UserModel(),
       child: MaterialApp(
-        title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           primaryColor: Colors.lightBlue[700],
