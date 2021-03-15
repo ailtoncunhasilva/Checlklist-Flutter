@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Checklist{
 
   String _id;
+  String _tipClient;
   String _name;
   String _cpf;
   String _phone;
@@ -12,6 +13,7 @@ class Checklist{
   String _placa;
   String _chassis;
   String _combustivle;
+  String _registerList;
   List<String> _photos;
   String _observation;
 
@@ -19,6 +21,7 @@ class Checklist{
 
   Checklist.fromDocumentSnapshot(DocumentSnapshot documentSnapshot){
     this.id = documentSnapshot.documentID;
+    this.tipClient = documentSnapshot['tipclient'];
     this.name = documentSnapshot['name'];
     this.cpf = documentSnapshot['cpf'];
     this.phone = documentSnapshot['phone'];
@@ -28,6 +31,7 @@ class Checklist{
     this.placa = documentSnapshot['placa'];
     this.chassis = documentSnapshot['chassis'];
     this.combustivel = documentSnapshot['combustivel'];
+    this.registerList = documentSnapshot['registerList'];
     this.photos = List<String>.from(documentSnapshot['photos']);
     this.observation = documentSnapshot['observation'];
 
@@ -43,6 +47,7 @@ class Checklist{
   Map<String,dynamic> toMap(){
     Map<String, dynamic> map ={
       'id': this.id,
+      'tipClient': this.tipClient,
       'name': this.name,
       'cpf': this.cpf,
       'phone': this.phone,
@@ -52,6 +57,7 @@ class Checklist{
       'placa': this.placa,
       'chassis': this.chassis,
       'combustivel': this.combustivel,
+      'registerList': this.registerList,
       'photos': this.photos,
       'observation': this.observation, 
 
@@ -66,6 +72,12 @@ class Checklist{
     _photos = value;
   }
 
+  String get tipClient => _tipClient;
+
+  set tipClient(String value){
+    _tipClient = value;
+  }
+
   String get observation => _observation;
 
   set observation(String value){
@@ -76,6 +88,12 @@ class Checklist{
 
   set combustivel(String value){
     _combustivle = value;
+  }
+
+  String get registerList => _registerList;
+
+  set registerList(String value){
+    _registerList = value;
   }
 
   String get chassis => _chassis;

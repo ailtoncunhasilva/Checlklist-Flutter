@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_checklist/card.itens/card_client.dart';
 import 'package:auto_checklist/models/checklistmodel.dart';
 import 'package:auto_checklist/models/user_model.dart';
 import 'package:auto_checklist/screens/meuschecklist_screen.dart';
@@ -23,20 +24,28 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
   List<File> _imageList = List();
   final _formKey = GlobalKey<FormState>();
 
+  CardClient cardClient;
+
   final OutlineInputBorder borderForm =
       OutlineInputBorder(borderRadius: BorderRadius.circular(4));
 
   List<DropdownMenuItem<String>> combustivelList = List();
+  List<DropdownMenuItem<String>> registerList = List();
+  List<DropdownMenuItem<String>> tipClient = List();
 
   Checklist _checklist;
   BuildContext _dialogContext;
 
   String itemSelected;
+  String itemRegisterSelected;
+  String itemTipClient;
 
   @override
   void initState() {
     super.initState();
     _carregarItensDropdown();
+    _dropdownRegister();
+    _dropdownTipClient();
 
     _checklist = Checklist.gerarID();
   }
@@ -54,6 +63,16 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
     combustivelList
         .add(DropdownMenuItem(child: Text('Elétrico'), value: 'Elétrico'));
     combustivelList.add(DropdownMenuItem(child: Text('Gás'), value: 'Gás'));
+  }
+
+  _dropdownRegister() {
+    registerList.add(DropdownMenuItem(child: Text('Sim'), value: 'Sim'));
+    registerList.add(DropdownMenuItem(child: Text('Não'), value: 'Não'));
+  }
+
+  _dropdownTipClient(){
+    tipClient.add(DropdownMenuItem(child: Text('Pessoa Física'), value: 'Pessoa Física'));
+    tipClient.add(DropdownMenuItem(child: Text('Pessoa Jurídica'), value: 'Pessoa Jurídica'));
   }
 
   _selectImage() async {
@@ -158,7 +177,8 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                       ),
                       Column(
                         children: [
-                          Card(
+                          CardClient(_checklist),
+                          /*Card(
                             elevation: 8,
                             margin: EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 3),
@@ -166,8 +186,50 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                               padding: const EdgeInsets.all(4.0),
                               child: Column(
                                 children: [
+                                  DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Possui cadastro conosco?',
+                                    ),
+                                    value: itemRegisterSelected,
+                                    onSaved: (registerList) {
+                                      _checklist.registerList = registerList;
+                                    },
+                                    items: registerList,
+                                    validator: (text) {
+                                      return Validador()
+                                          .add(Validar.OBRIGATORIO,
+                                              msg: 'Campo obrigatório')
+                                          .valido(text);
+                                    },
+                                    onChanged: (valor) {
+                                      setState(() {
+                                        itemRegisterSelected = valor;
+                                      });
+                                    },
+                                  ),
+                                  DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Tipo de cliente:',
+                                    ),
+                                    value: itemTipClient,
+                                    onSaved: (tipClient) {
+                                      _checklist.tipClient = tipClient;
+                                    },
+                                    items: tipClient,
+                                    validator: (text) {
+                                      return Validador()
+                                          .add(Validar.OBRIGATORIO,
+                                              msg: 'Campo obrigatório')
+                                          .valido(text);
+                                    },
+                                    onChanged: (valor) {
+                                      setState(() {
+                                        itemTipClient = valor;
+                                      });
+                                    },
+                                  ),
                                   InputCustomized(
-                                    hint: 'Nome do cliente',
+                                    hint: 'Nome do condutor',
                                     onSaved: (name) {
                                       _checklist.name = name;
                                     },
@@ -189,7 +251,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                                   .size
                                                   .width *
                                               0.50,
-                                          child: InputCustomized(
+                                          child: itemTipClient == 'Pessoa Física' ? InputCustomized(
                                             hint: 'CPF',
                                             onSaved: (cpf) {
                                               _checklist.cpf = cpf;
@@ -200,6 +262,21 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                               return Validador()
                                                   .add(Validar.CPF,
                                                       msg: 'CPF inválido')
+                                                  .add(Validar.OBRIGATORIO,
+                                                      msg: 'Campo Obrigatório')
+                                                  .valido(text);
+                                            },
+                                          ) : InputCustomized(
+                                            hint: 'CNPJ',
+                                            onSaved: (cpf) {
+                                              _checklist.cpf = cpf;
+                                            },
+                                            inputType: TextInputType.number,
+                                            inputBorder: borderForm,
+                                            validator: (text) {
+                                              return Validador()
+                                                  .add(Validar.CNPJ,
+                                                      msg: 'CNPJ inválido')
                                                   .add(Validar.OBRIGATORIO,
                                                       msg: 'Campo Obrigatório')
                                                   .valido(text);
@@ -255,7 +332,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                 ],
                               ),
                             ),
-                          ),
+                          ),*/
                           Container(
                             height: 30,
                             child: Center(
@@ -349,8 +426,10 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                     ),
                                   ),
                                   DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                        labelText: 'Tipo de combustível'),
                                     value: itemSelected,
-                                    hint: Text('Tipo de combustível'),
+                                    //hint: Text('Tipo de combustível'),
                                     onSaved: (combustivel) {
                                       _checklist.combustivel = combustivel;
                                     },
