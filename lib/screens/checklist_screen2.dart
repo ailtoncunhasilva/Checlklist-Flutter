@@ -352,6 +352,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                               child: Column(
                                 children: [
                                   InputCustomized(
+                                    label: 'Marca/Modelo',
                                     hint: 'Marca/Modelo',
                                     onSaved: (marca) {
                                       _checklist.marca = marca;
@@ -370,6 +371,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                       children: [
                                         Expanded(
                                           child: InputCustomized(
+                                            label: 'Ano',
                                             hint: 'Ano',
                                             onSaved: (yearModel) {
                                               _checklist.yearModel = yearModel;
@@ -389,6 +391,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                         SizedBox(width: 4),
                                         Expanded(
                                           child: InputCustomized(
+                                            label: 'Placa',
                                             hint: 'placa',
                                             onSaved: (placa) {
                                               _checklist.placa = placa;
@@ -410,6 +413,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 4),
                                     child: InputCustomized(
+                                      label: 'Chassis',
                                       hint: 'Chassis',
                                       onSaved: (chassis) {
                                         _checklist.chassis = chassis;
@@ -612,6 +616,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                   ),
                                   Divider(color: Colors.grey[500]),
                                   InputCustomized(
+                                    label: 'Observações do Checklist',
                                     hint: 'Observações do checklist',
                                     onSaved: (observation) {
                                       _checklist.observation = observation;

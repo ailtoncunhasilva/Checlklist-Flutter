@@ -8,6 +8,7 @@ class Checklist{
   String _cpf;
   String _phone;
   String _email;
+  String _address;
   String _marca;
   String _yearModel;
   String _placa;
@@ -26,6 +27,7 @@ class Checklist{
     this.cpf = documentSnapshot['cpf'];
     this.phone = documentSnapshot['phone'];
     this.email = documentSnapshot['email'];
+    this.address = documentSnapshot['address'];
     this.marca = documentSnapshot['marca'];
     this.yearModel = documentSnapshot['yearModel'];
     this.placa = documentSnapshot['placa'];
@@ -52,6 +54,7 @@ class Checklist{
       'cpf': this.cpf,
       'phone': this.phone,
       'email': this.email,
+      'address': this.address,
       'marca': this.marca,
       'yearModel': this.yearModel,
       'placa': this.placa,
@@ -82,6 +85,12 @@ class Checklist{
 
   set observation(String value){
     _observation = value;
+  }
+
+  String get address => _address;
+
+  set address(String value){
+    _address = value;
   }
 
   String get combustivel => _combustivle;

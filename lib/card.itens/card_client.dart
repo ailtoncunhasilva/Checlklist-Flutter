@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:validadores/validadores.dart';
 
 class CardClient extends StatefulWidget {
-
   final Checklist _checklist;
 
   CardClient(this._checklist);
@@ -26,7 +25,6 @@ class _CardClientState extends State<CardClient> {
     _carregarItensDropdown();
     _dropdownRegister();
     _dropdownTipClient();
-
   }
 
   List<DropdownMenuItem<String>> combustivelList = List();
@@ -61,9 +59,11 @@ class _CardClientState extends State<CardClient> {
     registerList.add(DropdownMenuItem(child: Text('Não'), value: 'Não'));
   }
 
-  _dropdownTipClient(){
-    tipClient.add(DropdownMenuItem(child: Text('Pessoa Física'), value: 'Pessoa Física'));
-    tipClient.add(DropdownMenuItem(child: Text('Pessoa Jurídica'), value: 'Pessoa Jurídica'));
+  _dropdownTipClient() {
+    tipClient.add(
+        DropdownMenuItem(child: Text('Pessoa Física'), value: 'Pessoa Física'));
+    tipClient.add(DropdownMenuItem(
+        child: Text('Pessoa Jurídica'), value: 'Pessoa Jurídica'));
   }
 
   @override
@@ -115,18 +115,22 @@ class _CardClientState extends State<CardClient> {
                 });
               },
             ),
-            InputCustomized(
-              hint: 'Nome do condutor',
-              onSaved: (name) {
-                widget._checklist.name = name;
-              },
-              inputType: TextInputType.name,
-              inputBorder: border,
-              validator: (text) {
-                return Validador()
-                    .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
-                    .valido(text);
-              },
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: InputCustomized(
+                label: 'Nome do condutor',
+                hint: 'Nome do condutor',
+                onSaved: (name) {
+                  widget._checklist.name = name;
+                },
+                inputType: TextInputType.name,
+                inputBorder: border,
+                validator: (text) {
+                  return Validador()
+                      .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                      .valido(text);
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
@@ -136,6 +140,7 @@ class _CardClientState extends State<CardClient> {
                     width: MediaQuery.of(context).size.width * 0.50,
                     child: itemTipClient == 'Pessoa Física'
                         ? InputCustomized(
+                          label: 'CPF',
                             hint: 'CPF',
                             onSaved: (cpf) {
                               widget._checklist.cpf = cpf;
@@ -151,6 +156,7 @@ class _CardClientState extends State<CardClient> {
                             },
                           )
                         : InputCustomized(
+                          label: 'CNPJ',
                             hint: 'CNPJ',
                             onSaved: (cpf) {
                               widget._checklist.cpf = cpf;
@@ -170,6 +176,7 @@ class _CardClientState extends State<CardClient> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: InputCustomized(
+                        label: 'Fone WhatsApp',
                           inputType: TextInputType.number,
                           hint: 'Fone WhatsApp',
                           onSaved: (phone) {
@@ -194,6 +201,7 @@ class _CardClientState extends State<CardClient> {
             Padding(
               padding: EdgeInsets.only(top: 4),
               child: InputCustomized(
+                label: 'E-mail',
                 hint: 'E-mail',
                 onSaved: (email) {
                   widget._checklist.email = email;
@@ -205,6 +213,23 @@ class _CardClientState extends State<CardClient> {
                       .add(Validar.EMAIL, msg: 'E-mail inválido')
                       .valido(text);
                 },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: InputCustomized(
+                label: 'Ednereço com CEP',
+                hint: 'Endereço com CEP',
+                inputBorder: border,
+                onSaved: (address){
+                  widget._checklist.address = address;
+                },
+                validator: (text) {
+                  return Validador()
+                      .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                      .valido(text);
+                },
+                maxLines: null,
               ),
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class InputCustomized extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
+  final String label;
   final bool obscure;
   final bool autofocus;
   final TextInputType inputType;
@@ -17,6 +18,7 @@ class InputCustomized extends StatelessWidget {
   InputCustomized({
     this.controller,
     @required this.hint,
+    @required this.label,
     this.obscure = false,
     this.autofocus = false,
     this.inputType,
@@ -43,6 +45,7 @@ class InputCustomized extends StatelessWidget {
       decoration: InputDecoration(
         border: this.inputBorder,
         hintText: this.hint,
+        labelText: this.label,
       ),
     );
   }
