@@ -9,6 +9,10 @@ class Checklist{
   String _phone;
   String _email;
   String _address;
+  String _paymentForm;
+  String _dateIn;
+  String _dateOut;
+  String _release;
   String _marca;
   String _yearModel;
   String _placa;
@@ -28,6 +32,10 @@ class Checklist{
     this.phone = documentSnapshot['phone'];
     this.email = documentSnapshot['email'];
     this.address = documentSnapshot['address'];
+    this.paymentForm = documentSnapshot['paymentForm'];
+    this.dateIn = documentSnapshot['dateIn'];
+    this.dateOut = documentSnapshot['dateOut'];
+    this.release = documentSnapshot['release'];
     this.marca = documentSnapshot['marca'];
     this.yearModel = documentSnapshot['yearModel'];
     this.placa = documentSnapshot['placa'];
@@ -55,6 +63,10 @@ class Checklist{
       'phone': this.phone,
       'email': this.email,
       'address': this.address,
+      'paymentForm': this.paymentForm,
+      'dateIn': this.dateIn,
+      'dateOut': this.dateOut,
+      'release': this.release,
       'marca': this.marca,
       'yearModel': this.yearModel,
       'placa': this.placa,
@@ -79,6 +91,30 @@ class Checklist{
 
   set tipClient(String value){
     _tipClient = value;
+  }
+
+  String get paymentForm => _paymentForm;
+
+  set paymentForm(String value){
+    _paymentForm = value;
+  }
+
+  String get dateIn => _dateIn;
+
+  set dateIn(String value){
+    _dateIn = value;
+  }
+
+  String get dateOut => _dateOut;
+
+  set dateOut(String value){
+    _dateOut = value;
+  }
+
+  String get release => _release;
+
+  set release(String value){
+    _release = value;
   }
 
   String get observation => _observation;

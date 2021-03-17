@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_checklist/card.itens/card_client.dart';
+import 'package:auto_checklist/card.itens/card_datapay.dart';
 import 'package:auto_checklist/models/checklistmodel.dart';
 import 'package:auto_checklist/models/user_model.dart';
 import 'package:auto_checklist/screens/meuschecklist_screen.dart';
@@ -44,8 +45,8 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
   void initState() {
     super.initState();
     _carregarItensDropdown();
-    _dropdownRegister();
-    _dropdownTipClient();
+    //_dropdownRegister();
+    //_dropdownTipClient();
 
     _checklist = Checklist.gerarID();
   }
@@ -65,7 +66,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
     combustivelList.add(DropdownMenuItem(child: Text('Gás'), value: 'Gás'));
   }
 
-  _dropdownRegister() {
+  /*_dropdownRegister() {
     registerList.add(DropdownMenuItem(child: Text('Sim'), value: 'Sim'));
     registerList.add(DropdownMenuItem(child: Text('Não'), value: 'Não'));
   }
@@ -73,7 +74,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
   _dropdownTipClient(){
     tipClient.add(DropdownMenuItem(child: Text('Pessoa Física'), value: 'Pessoa Física'));
     tipClient.add(DropdownMenuItem(child: Text('Pessoa Jurídica'), value: 'Pessoa Jurídica'));
-  }
+  }*/
 
   _selectImage() async {
     File imageSelected =
@@ -178,6 +179,17 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                       Column(
                         children: [
                           CardClient(_checklist),
+                          Container(
+                            height: 30,
+                            child: Center(
+                                child: Text(
+                              'Dados previsionais',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
+                          DataPay(_checklist),
                           /*Card(
                             elevation: 8,
                             margin: EdgeInsets.symmetric(

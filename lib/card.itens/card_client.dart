@@ -11,10 +11,15 @@ class CardClient extends StatefulWidget {
   CardClient(this._checklist);
 
   @override
-  _CardClientState createState() => _CardClientState();
+  _CardClientState createState() => _CardClientState(_checklist);
 }
 
 class _CardClientState extends State<CardClient> {
+
+  final Checklist _checklist;
+
+  _CardClientState(this._checklist);
+
   final OutlineInputBorder border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(4),
   );
@@ -22,7 +27,7 @@ class _CardClientState extends State<CardClient> {
   @override
   void initState() {
     super.initState();
-    _carregarItensDropdown();
+    //_carregarItensDropdown();
     _dropdownRegister();
     _dropdownTipClient();
   }
@@ -39,7 +44,7 @@ class _CardClientState extends State<CardClient> {
 
   String itemTipClient;
 
-  _carregarItensDropdown() {
+  /*_carregarItensDropdown() {
     combustivelList
         .add(DropdownMenuItem(child: Text('Gasolina'), value: 'Gasolina'));
     combustivelList.add(DropdownMenuItem(
@@ -52,7 +57,7 @@ class _CardClientState extends State<CardClient> {
     combustivelList
         .add(DropdownMenuItem(child: Text('Elétrico'), value: 'Elétrico'));
     combustivelList.add(DropdownMenuItem(child: Text('Gás'), value: 'Gás'));
-  }
+  }*/
 
   _dropdownRegister() {
     registerList.add(DropdownMenuItem(child: Text('Sim'), value: 'Sim'));
@@ -81,7 +86,7 @@ class _CardClientState extends State<CardClient> {
               ),
               value: itemRegisterSelected,
               onSaved: (registerList) {
-                widget._checklist.registerList = registerList;
+                _checklist.registerList = registerList;
               },
               items: registerList,
               validator: (text) {
@@ -101,7 +106,7 @@ class _CardClientState extends State<CardClient> {
               ),
               value: itemTipClient,
               onSaved: (tipClient) {
-                widget._checklist.tipClient = tipClient;
+                _checklist.tipClient = tipClient;
               },
               items: tipClient,
               validator: (text) {
@@ -121,7 +126,7 @@ class _CardClientState extends State<CardClient> {
                 label: 'Nome do condutor',
                 hint: 'Nome do condutor',
                 onSaved: (name) {
-                  widget._checklist.name = name;
+                  _checklist.name = name;
                 },
                 inputType: TextInputType.name,
                 inputBorder: border,
@@ -143,7 +148,7 @@ class _CardClientState extends State<CardClient> {
                           label: 'CPF',
                             hint: 'CPF',
                             onSaved: (cpf) {
-                              widget._checklist.cpf = cpf;
+                              _checklist.cpf = cpf;
                             },
                             inputType: TextInputType.number,
                             inputBorder: border,
@@ -159,7 +164,7 @@ class _CardClientState extends State<CardClient> {
                           label: 'CNPJ',
                             hint: 'CNPJ',
                             onSaved: (cpf) {
-                              widget._checklist.cpf = cpf;
+                              _checklist.cpf = cpf;
                             },
                             inputType: TextInputType.number,
                             inputBorder: border,
@@ -180,7 +185,7 @@ class _CardClientState extends State<CardClient> {
                           inputType: TextInputType.number,
                           hint: 'Fone WhatsApp',
                           onSaved: (phone) {
-                            widget._checklist.phone = phone;
+                            _checklist.phone = phone;
                           },
                           inputFormatter: [
                             WhitelistingTextInputFormatter.digitsOnly,
@@ -204,7 +209,7 @@ class _CardClientState extends State<CardClient> {
                 label: 'E-mail',
                 hint: 'E-mail',
                 onSaved: (email) {
-                  widget._checklist.email = email;
+                  _checklist.email = email;
                 },
                 inputBorder: border,
                 validator: (text) {
@@ -222,7 +227,7 @@ class _CardClientState extends State<CardClient> {
                 hint: 'Endereço com CEP',
                 inputBorder: border,
                 onSaved: (address){
-                  widget._checklist.address = address;
+                  _checklist.address = address;
                 },
                 validator: (text) {
                   return Validador()
