@@ -24,14 +24,23 @@ class _DataPayState extends State<DataPay> {
   );
 
   List<DropdownMenuItem<String>> paymentFormList = List();
+  List<DropdownMenuItem<String>> fuelLevel = List();
+  List<DropdownMenuItem<String>> serviceType = List();
+  List<DropdownMenuItem<String>> typeMaintenance = List();
 
   String itemPaymentSelected;
+  String itemFuelLevel;
+  String itemServiceType;
+  String itemTypeMaintenance;
 
   @override
   void initState() {
     super.initState();
 
     _dropdownPaymentForm();
+    _dropdownFuelLevel();
+    _dropdownTypeService();
+    _dropdownTypeMaintenance();
   }
 
   _dropdownPaymentForm() {
@@ -43,6 +52,32 @@ class _DataPayState extends State<DataPay> {
         DropdownMenuItem(child: Text('Cartão Débito'), value: 'Cartão Débito'));
     paymentFormList
         .add(DropdownMenuItem(child: Text('Boleto'), value: 'Boleto'));
+  }
+
+  _dropdownFuelLevel() {
+    fuelLevel.add(DropdownMenuItem(child: Text('1/4'), value: '1/4'));
+    fuelLevel.add(
+        DropdownMenuItem(child: Text('Meio tanque'), value: 'Meio tanque'));
+    fuelLevel.add(DropdownMenuItem(child: Text('3/4'), value: '3/4'));
+    fuelLevel.add(
+        DropdownMenuItem(child: Text('Tanque cheio'), value: 'Tanque cheio'));
+  }
+
+  _dropdownTypeService() {
+    serviceType.add(DropdownMenuItem(
+      child: Text('Orçamento'),
+      value: 'Orçamento',
+    ));
+    serviceType.add(DropdownMenuItem(
+      child: Text('Execução'),
+      value: 'Execução',
+    ));
+  }
+
+  _dropdownTypeMaintenance(){
+    typeMaintenance.add(DropdownMenuItem(child: Text('Manutenção corretiva'), value: 'Manuntenção corretiva'));
+    typeMaintenance.add(DropdownMenuItem(child: Text('Manutenção preventiva'), value: 'Manuntenção preventiva'));
+    typeMaintenance.add(DropdownMenuItem(child: Text('Manutenção preditiva'), value: 'Manuntenção preditiva'));
   }
 
   @override
@@ -143,6 +178,75 @@ class _DataPayState extends State<DataPay> {
                       .valido(text);
                 },
               ),
+            ),
+            DropdownButtonFormField(
+              decoration: InputDecoration(
+                labelText: 'Nivel do combustível',
+              ),
+              items: fuelLevel,
+              value: itemFuelLevel,
+              onSaved: (fuelLevel){
+                _checklist.fuelLevel = fuelLevel;
+              },
+              onChanged: (valor) {
+                setState(() {
+                  itemFuelLevel = valor;
+                });
+              },
+              validator: (text) {
+                return Validador()
+                    .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                    .valido(text);
+              },
+            ),
+            Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  child: DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Tipo de serviço',
+                    ),
+                    items: serviceType,
+                    value: itemServiceType,
+                    onSaved: (typeService){
+                      _checklist.typeService = typeService;
+                    },
+                    onChanged: (valor) {
+                      setState(() {
+                        itemServiceType = valor;
+                      });
+                    },
+                    validator: (text) {
+                      return Validador()
+                          .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                          .valido(text);
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Tipo de manutenção',
+                    ),
+                    items: typeMaintenance,
+                    value: itemTypeMaintenance,
+                    onSaved: (typeMaintenance){
+                      _checklist.typeMaintenance = typeMaintenance;
+                    },
+                    onChanged: (valor) {
+                      setState(() {
+                        itemTypeMaintenance = valor;
+                      });
+                    },
+                    validator: (text) {
+                      return Validador()
+                          .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                          .valido(text);
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),

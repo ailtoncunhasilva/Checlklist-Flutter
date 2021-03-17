@@ -13,6 +13,14 @@ class Checklist{
   String _dateIn;
   String _dateOut;
   String _release;
+  String _fuelLevel;
+  String _typeService;
+  String _typeMaintenance;
+  String _typeVehicle;
+  String _km;
+  String _frota;
+  String _color;
+  String _renavam;
   String _marca;
   String _yearModel;
   String _placa;
@@ -36,6 +44,14 @@ class Checklist{
     this.dateIn = documentSnapshot['dateIn'];
     this.dateOut = documentSnapshot['dateOut'];
     this.release = documentSnapshot['release'];
+    this.fuelLevel = documentSnapshot['fuelLevel'];
+    this.typeService = documentSnapshot['typeService'];
+    this.typeMaintenance = documentSnapshot['typeMaintenance'];
+    this.typeVehicle = documentSnapshot['typeVehicle'];
+    this.km = documentSnapshot['km'];
+    this.frota = documentSnapshot['frota'];
+    this.color = documentSnapshot['color'];
+    this.renavam = documentSnapshot['renavam'];
     this.marca = documentSnapshot['marca'];
     this.yearModel = documentSnapshot['yearModel'];
     this.placa = documentSnapshot['placa'];
@@ -67,6 +83,14 @@ class Checklist{
       'dateIn': this.dateIn,
       'dateOut': this.dateOut,
       'release': this.release,
+      'fuelLevel': this.fuelLevel,
+      'typeService': this.typeService,
+      'typeMaintenance': this.typeMaintenance,
+      'typeVehicle': this.typeVehicle,
+      'km': this.km,
+      'frota': this.frota,
+      'color': this.color,
+      'renavam': this.renavam,
       'marca': this.marca,
       'yearModel': this.yearModel,
       'placa': this.placa,
@@ -115,6 +139,54 @@ class Checklist{
 
   set release(String value){
     _release = value;
+  }
+
+  String get fuelLevel => _fuelLevel;
+
+  set fuelLevel(String value){
+    _fuelLevel = value;
+  }
+
+  String get typeService => _typeService;
+
+  set typeService(String value){
+    _typeService = value;
+  }
+
+  String get typeMaintenance => _typeMaintenance;
+
+  set typeMaintenance(String value){
+    _typeMaintenance = value;
+  }
+
+  String get typeVehicle => _typeVehicle;
+
+  set typeVehicle(String value){
+    _typeVehicle = value;
+  }
+
+  String get km => _km;
+
+  set km(String value){
+    _km = value;
+  }
+
+  String get frota => _frota;
+
+  set frota(String value){
+    _frota = value;
+  }
+
+  String get color => _color;
+
+  set color(String value){
+    _color = value;
+  }
+
+  String get renavam => _renavam;
+
+  set renavam(String value){
+    _renavam = value;
   }
 
   String get observation => _observation;

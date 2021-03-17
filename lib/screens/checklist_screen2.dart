@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_checklist/card.itens/card_client.dart';
 import 'package:auto_checklist/card.itens/card_datapay.dart';
+import 'package:auto_checklist/card.itens/card_vehicle.dart';
 import 'package:auto_checklist/models/checklistmodel.dart';
 import 'package:auto_checklist/models/user_model.dart';
 import 'package:auto_checklist/screens/meuschecklist_screen.dart';
@@ -30,28 +31,28 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
   final OutlineInputBorder borderForm =
       OutlineInputBorder(borderRadius: BorderRadius.circular(4));
 
-  List<DropdownMenuItem<String>> combustivelList = List();
+  //List<DropdownMenuItem<String>> combustivelList = List();
   List<DropdownMenuItem<String>> registerList = List();
   List<DropdownMenuItem<String>> tipClient = List();
 
   Checklist _checklist;
   BuildContext _dialogContext;
 
-  String itemSelected;
+  //String itemSelected;
   String itemRegisterSelected;
   String itemTipClient;
 
   @override
   void initState() {
     super.initState();
-    _carregarItensDropdown();
+    //_carregarItensDropdown();
     //_dropdownRegister();
     //_dropdownTipClient();
 
     _checklist = Checklist.gerarID();
   }
 
-  _carregarItensDropdown() {
+  /*_carregarItensDropdown() {
     combustivelList
         .add(DropdownMenuItem(child: Text('Gasolina'), value: 'Gasolina'));
     combustivelList.add(DropdownMenuItem(
@@ -64,7 +65,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
     combustivelList
         .add(DropdownMenuItem(child: Text('Elétrico'), value: 'Elétrico'));
     combustivelList.add(DropdownMenuItem(child: Text('Gás'), value: 'Gás'));
-  }
+  }*/
 
   /*_dropdownRegister() {
     registerList.add(DropdownMenuItem(child: Text('Sim'), value: 'Sim'));
@@ -166,30 +167,14 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Container(
-                        height: 30,
-                        child: Center(
-                            child: Text(
-                          'Dados do cliente',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                      ),
+                      containerText('Dados do cliente'),
                       Column(
                         children: [
                           CardClient(_checklist),
-                          Container(
-                            height: 30,
-                            child: Center(
-                                child: Text(
-                              'Dados previsionais',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                          ),
+                          containerText('Outros dados'),
                           DataPay(_checklist),
+                          containerText('Dados do veículo'),
+                          CardVehicle(_checklist),
                           /*Card(
                             elevation: 8,
                             margin: EdgeInsets.symmetric(
@@ -345,7 +330,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                               ),
                             ),
                           ),*/
-                          Container(
+                          /*Container(
                             height: 30,
                             child: Center(
                                 child: Text(
@@ -354,8 +339,8 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                 fontWeight: FontWeight.bold,
                               ),
                             )),
-                          ),
-                          Card(
+                          ),*/
+                          /*Card(
                             elevation: 8,
                             margin: EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 3),
@@ -465,7 +450,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                 ],
                               ),
                             ),
-                          ),
+                          ),*/
                           Container(
                             height: 30,
                             child: Center(
@@ -673,4 +658,17 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
       ),
     );
   }
+}
+
+Widget containerText(text) {
+  return Container(
+    height: 30,
+    child: Center(
+        child: Text(
+      text,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    )),
+  );
 }
