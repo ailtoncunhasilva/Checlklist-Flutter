@@ -27,7 +27,6 @@ class _CardClientState extends State<CardClient> {
   @override
   void initState() {
     super.initState();
-    //_carregarItensDropdown();
     _dropdownRegister();
     _dropdownTipClient();
   }
@@ -43,21 +42,6 @@ class _CardClientState extends State<CardClient> {
   String itemRegisterSelected;
 
   String itemTipClient;
-
-  /*_carregarItensDropdown() {
-    combustivelList
-        .add(DropdownMenuItem(child: Text('Gasolina'), value: 'Gasolina'));
-    combustivelList.add(DropdownMenuItem(
-      child: Text('Etanol'),
-      value: 'Etanol',
-    ));
-    combustivelList.add(DropdownMenuItem(child: Text('Flex'), value: 'Flex'));
-    combustivelList
-        .add(DropdownMenuItem(child: Text('Diesel'), value: 'Diesel'));
-    combustivelList
-        .add(DropdownMenuItem(child: Text('Elétrico'), value: 'Elétrico'));
-    combustivelList.add(DropdownMenuItem(child: Text('Gás'), value: 'Gás'));
-  }*/
 
   _dropdownRegister() {
     registerList.add(DropdownMenuItem(child: Text('Sim'), value: 'Sim'));

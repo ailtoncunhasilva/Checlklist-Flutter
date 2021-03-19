@@ -242,8 +242,8 @@ class _CardVehicleState extends State<CardVehicle> {
                             .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
                             .valido(text);
                       },
-                      onSaved: (km) {
-                        _checklist.km = km;
+                      onSaved: (color) {
+                        _checklist.color = color;
                       },
                     ),
                   ),
@@ -261,8 +261,8 @@ class _CardVehicleState extends State<CardVehicle> {
                                   msg: 'Campo obrigatório')
                               .valido(text);
                         },
-                        onSaved: (frota) {
-                          _checklist.frota = frota;
+                        onSaved: (renavam) {
+                          _checklist.renavam = renavam;
                         },
                       ),
                     ),

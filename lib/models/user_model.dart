@@ -1,5 +1,11 @@
+import 'dart:io';
+
+import 'package:auto_checklist/models/checklistmodel.dart';
+import 'package:auto_checklist/screens/meuschecklist_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +18,12 @@ class UserModel extends Model {
   bool isLoading = false;
 
   static UserModel of(BuildContext context) => ScopedModel.of<UserModel>(context);
+
+  //Checklist _checklist = Checklist();
+
+  //List<File> _imageList = List();
+
+  //BuildContext dialogContext;
 
   @override
   void addListener(VoidCallback listener){
@@ -109,3 +121,6 @@ class UserModel extends Model {
     notifyListeners();
   }
 }
+
+
+

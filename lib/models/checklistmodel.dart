@@ -21,6 +21,15 @@ class Checklist{
   String _frota;
   String _color;
   String _renavam;
+  String _parts;
+  String _servicePerformed;
+  String _mechanic;
+  String _hourIn;
+  String _hourOut;
+  String _dateInitService;
+  String _dateEndService;
+  String _hourInitService;
+  String _hourEndService;
   String _marca;
   String _yearModel;
   String _placa;
@@ -52,7 +61,16 @@ class Checklist{
     this.frota = documentSnapshot['frota'];
     this.color = documentSnapshot['color'];
     this.renavam = documentSnapshot['renavam'];
+    this.parts = documentSnapshot['parts'];
+    this.servicePerformed = documentSnapshot['servicePerformed'];
+    this.mechanic = documentSnapshot['mechanic'];
     this.marca = documentSnapshot['marca'];
+    this.hourIn = documentSnapshot['hourIn'];
+    this.hourOut = documentSnapshot['hourOut'];
+    this.dateInitService = documentSnapshot['dateInitService'];
+    this.dateEndService = documentSnapshot['dateEndService'];
+    this.hourInitService = documentSnapshot['hourInitService'];
+    this.hourEndService = documentSnapshot['hourEndService'];
     this.yearModel = documentSnapshot['yearModel'];
     this.placa = documentSnapshot['placa'];
     this.chassis = documentSnapshot['chassis'];
@@ -91,6 +109,15 @@ class Checklist{
       'frota': this.frota,
       'color': this.color,
       'renavam': this.renavam,
+      'parts': this.parts,
+      'servicePerformed': this.servicePerformed,
+      'mechanic': this.mechanic,
+      'hourIn': this.hourIn,
+      'hourOut': this.hourOut,
+      'dateInitService': this.dateInitService,
+      'dateEndService': this.dateEndService,
+      'hourInitService': this.hourInitService,
+      'hourEndService': this.hourEndService,
       'marca': this.marca,
       'yearModel': this.yearModel,
       'placa': this.placa,
@@ -187,6 +214,60 @@ class Checklist{
 
   set renavam(String value){
     _renavam = value;
+  }
+
+  String get parts => _parts;
+
+  set parts(String value){
+    _parts = value;
+  }
+
+  String get servicePerformed => _servicePerformed;
+
+  set servicePerformed(String value){
+    _servicePerformed = value;
+  }
+
+  String get mechanic => _mechanic;
+
+  set mechanic(String value){
+    _mechanic = value;
+  }
+
+  String get hourIn => _hourIn;
+
+  set hourIn(String value){
+    _hourIn = value;
+  }
+
+  String get hourOut => _hourOut;
+
+  set hourOut(String value){
+    _hourOut = value;
+  }
+
+  String get dateInitService => _dateInitService;
+
+  set dateInitService(String value){
+    _dateInitService = value;
+  }
+
+  String get dateEndService => _dateEndService;
+
+  set dateEndService(String value){
+    _dateEndService = value;
+  }
+
+  String get hourInitService => _hourInitService;
+
+  set hourInitService(String value){
+    _hourInitService = value;
+  }
+
+  String get hourEndService => _hourEndService;
+
+  set hourEndService(String value){
+    _hourEndService = value;
   }
 
   String get observation => _observation;

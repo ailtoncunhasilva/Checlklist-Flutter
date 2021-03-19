@@ -113,11 +113,11 @@ class _DataPayState extends State<DataPay> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(top: 4),
-                  width: MediaQuery.of(context).size.width * 0.47,
+                  width: MediaQuery.of(context).size.width * 0.6,
                   child: InputCustomized(
                     inputBorder: border,
-                    hint: 'Data de entrada',
-                    label: 'Data de entrada',
+                    hint: 'Data/Entrada',
+                    label: 'Data/Entrada',
                     inputType: TextInputType.datetime,
                     inputFormatter: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -138,12 +138,12 @@ class _DataPayState extends State<DataPay> {
                     padding: const EdgeInsets.only(left: 4, top: 4),
                     child: InputCustomized(
                       inputBorder: border,
-                      hint: 'Data de saída',
-                      label: 'Data de saída',
+                      hint: 'Hora/Entrada',
+                      label: 'Hora/Entrada',
                       inputType: TextInputType.datetime,
                       inputFormatter: [
                         FilteringTextInputFormatter.digitsOnly,
-                        DataInputFormatter(),
+                        HoraInputFormatter(),
                       ],
                       onSaved: (dateOut) {
                         _checklist.dateOut = dateOut;
@@ -152,6 +152,45 @@ class _DataPayState extends State<DataPay> {
                         return Validador()
                             .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
                             .valido(text);
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 4),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: InputCustomized(
+                    inputBorder: border,
+                    hint: 'Data/Saída',
+                    label: 'Data/Saída',
+                    inputType: TextInputType.datetime,
+                    inputFormatter: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      DataInputFormatter(),
+                    ],
+                    onSaved: (dateIn) {
+                      _checklist.dateIn = dateIn;
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 4, top: 4),
+                    child: InputCustomized(
+                      inputBorder: border,
+                      hint: 'Hora/Saída',
+                      label: 'Hora/Saída',
+                      inputType: TextInputType.datetime,
+                      inputFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        HoraInputFormatter(),
+                      ],
+                      onSaved: (dateOut) {
+                        _checklist.dateOut = dateOut;
                       },
                     ),
                   ),
@@ -181,7 +220,7 @@ class _DataPayState extends State<DataPay> {
             ),
             DropdownButtonFormField(
               decoration: InputDecoration(
-                labelText: 'Nivel do combustível',
+                labelText: 'Nivel do tanque de combustível',
               ),
               items: fuelLevel,
               value: itemFuelLevel,
