@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_checklist/models/user_model.dart';
 import 'package:auto_checklist/screens/checklist_screen2.dart';
 import 'package:auto_checklist/screens/login_screen.dart';
@@ -21,7 +23,37 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: SplashScreen(),
+      ),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => HomePage()),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Theme.of(context).primaryColor,
+        width: double.maxFinite,
+        height: double.maxFinite,
+        child: Image.asset('images/logopng.png'),
       ),
     );
   }

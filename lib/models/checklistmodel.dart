@@ -43,7 +43,7 @@ class Checklist{
 
   Checklist.fromDocumentSnapshot(DocumentSnapshot documentSnapshot){
     this.id = documentSnapshot.documentID;
-    this.tipClient = documentSnapshot['tipclient'];
+    this.tipClient = documentSnapshot['tipClient'];
     this.name = documentSnapshot['name'];
     this.cpf = documentSnapshot['cpf'];
     this.phone = documentSnapshot['phone'];

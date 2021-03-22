@@ -14,7 +14,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:validadores/Validador.dart';
 
 class ChecklistScreen2 extends StatefulWidget {
   @override
@@ -118,7 +117,7 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: Text('CHECKLIST'),
+        title: Text('CHECKLIST DIGITAL'),
         centerTitle: true,
       ),
       body: ScopedModelDescendant<UserModel>(
@@ -152,8 +151,8 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                     initialValue: _imageList,
                                     validator: (image) {
                                       if (image.length == 0 ||
-                                          image.length < 8) {
-                                        return 'Necessário 8 imagens no mínimo';
+                                          image.length < 10) {
+                                        return 'Necessário 10 fotos';
                                       }
                                       return null;
                                     },
@@ -298,12 +297,6 @@ class _ChecklistScreen2State extends State<ChecklistScreen2> {
                                     },
                                     maxLines: null,
                                     inputBorder: borderForm,
-                                    validator: (text) {
-                                      return Validador()
-                                          .add(Validar.OBRIGATORIO,
-                                              msg: 'Campo obrigatório')
-                                          .valido(text);
-                                    },
                                   ),
                                 ],
                               ),

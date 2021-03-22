@@ -23,9 +23,11 @@ class _CardVehicleState extends State<CardVehicle> {
 
   List<DropdownMenuItem<String>> typeVehicleList = List();
   List<DropdownMenuItem<String>> combustivelList = List();
+  List<DropdownMenuItem<String>> fuelLevel = List();
 
   String itemTypeVehicle;
   String itemSelected;
+  String itemFuelLevel;
 
   @override
   void initState() {
@@ -33,6 +35,16 @@ class _CardVehicleState extends State<CardVehicle> {
 
     _dropdownTypeVehicle();
     _carregarItensDropdown();
+    _dropdownFuelLevel();
+  }
+
+  _dropdownFuelLevel() {
+    fuelLevel.add(DropdownMenuItem(child: Text('1/4'), value: '1/4'));
+    fuelLevel.add(
+        DropdownMenuItem(child: Text('Meio tanque'), value: 'Meio tanque'));
+    fuelLevel.add(DropdownMenuItem(child: Text('3/4'), value: '3/4'));
+    fuelLevel.add(
+        DropdownMenuItem(child: Text('Tanque cheio'), value: 'Tanque cheio'));
   }
 
   _dropdownTypeVehicle() {
@@ -184,6 +196,26 @@ class _CardVehicleState extends State<CardVehicle> {
                 });
               },
             ),
+            DropdownButtonFormField(
+              decoration: InputDecoration(
+                labelText: 'Nivel do tanque de combustível',
+              ),
+              items: fuelLevel,
+              value: itemFuelLevel,
+              onSaved: (fuelLevel) {
+                _checklist.fuelLevel = fuelLevel;
+              },
+              onChanged: (valor) {
+                setState(() {
+                  itemFuelLevel = valor;
+                });
+              },
+              validator: (text) {
+                return Validador()
+                    .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                    .valido(text);
+              },
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Row(
@@ -259,6 +291,8 @@ class _CardVehicleState extends State<CardVehicle> {
                           return Validador()
                               .add(Validar.OBRIGATORIO,
                                   msg: 'Campo obrigatório')
+                              .maxLength(11)
+                              .minLength(11)
                               .valido(text);
                         },
                         onSaved: (renavam) {

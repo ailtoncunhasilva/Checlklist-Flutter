@@ -24,12 +24,10 @@ class _DataPayState extends State<DataPay> {
   );
 
   List<DropdownMenuItem<String>> paymentFormList = List();
-  List<DropdownMenuItem<String>> fuelLevel = List();
   List<DropdownMenuItem<String>> serviceType = List();
   List<DropdownMenuItem<String>> typeMaintenance = List();
 
   String itemPaymentSelected;
-  String itemFuelLevel;
   String itemServiceType;
   String itemTypeMaintenance;
 
@@ -38,7 +36,6 @@ class _DataPayState extends State<DataPay> {
     super.initState();
 
     _dropdownPaymentForm();
-    _dropdownFuelLevel();
     _dropdownTypeService();
     _dropdownTypeMaintenance();
   }
@@ -52,15 +49,6 @@ class _DataPayState extends State<DataPay> {
         DropdownMenuItem(child: Text('Cartão Débito'), value: 'Cartão Débito'));
     paymentFormList
         .add(DropdownMenuItem(child: Text('Boleto'), value: 'Boleto'));
-  }
-
-  _dropdownFuelLevel() {
-    fuelLevel.add(DropdownMenuItem(child: Text('1/4'), value: '1/4'));
-    fuelLevel.add(
-        DropdownMenuItem(child: Text('Meio tanque'), value: 'Meio tanque'));
-    fuelLevel.add(DropdownMenuItem(child: Text('3/4'), value: '3/4'));
-    fuelLevel.add(
-        DropdownMenuItem(child: Text('Tanque cheio'), value: 'Tanque cheio'));
   }
 
   _dropdownTypeService() {
@@ -140,13 +128,13 @@ class _DataPayState extends State<DataPay> {
                       inputBorder: border,
                       hint: 'Hora/Entrada',
                       label: 'Hora/Entrada',
-                      inputType: TextInputType.datetime,
+                      inputType: TextInputType.number,
                       inputFormatter: [
                         FilteringTextInputFormatter.digitsOnly,
                         HoraInputFormatter(),
                       ],
-                      onSaved: (dateOut) {
-                        _checklist.dateOut = dateOut;
+                      onSaved: (hourIn) {
+                        _checklist.hourIn = hourIn;
                       },
                       validator: (text) {
                         return Validador()
@@ -172,8 +160,8 @@ class _DataPayState extends State<DataPay> {
                       FilteringTextInputFormatter.digitsOnly,
                       DataInputFormatter(),
                     ],
-                    onSaved: (dateIn) {
-                      _checklist.dateIn = dateIn;
+                    onSaved: (dateOut) {
+                      _checklist.dateOut = dateOut;
                     },
                   ),
                 ),
@@ -184,13 +172,13 @@ class _DataPayState extends State<DataPay> {
                       inputBorder: border,
                       hint: 'Hora/Saída',
                       label: 'Hora/Saída',
-                      inputType: TextInputType.datetime,
+                      inputType: TextInputType.number,
                       inputFormatter: [
                         FilteringTextInputFormatter.digitsOnly,
                         HoraInputFormatter(),
                       ],
-                      onSaved: (dateOut) {
-                        _checklist.dateOut = dateOut;
+                      onSaved: (hourOut) {
+                        _checklist.hourOut = hourOut;
                       },
                     ),
                   ),
@@ -211,32 +199,7 @@ class _DataPayState extends State<DataPay> {
                 onSaved: (release) {
                   _checklist.release = release;
                 },
-                validator: (text) {
-                  return Validador()
-                      .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
-                      .valido(text);
-                },
               ),
-            ),
-            DropdownButtonFormField(
-              decoration: InputDecoration(
-                labelText: 'Nivel do tanque de combustível',
-              ),
-              items: fuelLevel,
-              value: itemFuelLevel,
-              onSaved: (fuelLevel){
-                _checklist.fuelLevel = fuelLevel;
-              },
-              onChanged: (valor) {
-                setState(() {
-                  itemFuelLevel = valor;
-                });
-              },
-              validator: (text) {
-                return Validador()
-                    .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
-                    .valido(text);
-              },
             ),
             Row(
               children: [

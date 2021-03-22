@@ -1,6 +1,8 @@
 import 'package:auto_checklist/models/checklistmodel.dart';
 import 'package:auto_checklist/widget/input_customized.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CardAfterServiceproved extends StatefulWidget {
   final Checklist _checklist;
@@ -55,6 +57,84 @@ class _CardAfterServiceprovedState extends State<CardAfterServiceproved> {
               onSaved: (mechanic){
                 _checklist.mechanic = mechanic;
               },
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 4),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: InputCustomized(
+                    inputBorder: border,
+                    hint: 'Data/Início do serviço',
+                    label: 'Data/Início do serviço',
+                    inputType: TextInputType.datetime,
+                    inputFormatter: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      DataInputFormatter(),
+                    ],
+                    onSaved: (dateInitService) {
+                      _checklist.dateInitService = dateInitService;
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 4, top: 4),
+                    child: InputCustomized(
+                      inputBorder: border,
+                      hint: 'Hora/Início do serviço',
+                      label: 'Hora/Início do serviço',
+                      inputType: TextInputType.datetime,
+                      inputFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        HoraInputFormatter(),
+                      ],
+                      onSaved: (hourInitService) {
+                        _checklist.hourInitService = hourInitService;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 4),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: InputCustomized(
+                    inputBorder: border,
+                    hint: 'Data/Término do serviço',
+                    label: 'Data/Término do serviço',
+                    inputType: TextInputType.datetime,
+                    inputFormatter: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      DataInputFormatter(),
+                    ],
+                    onSaved: (dateEndService) {
+                      _checklist.dateEndService= dateEndService;
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 4, top: 4),
+                    child: InputCustomized(
+                      inputBorder: border,
+                      hint: 'Hora/Término do serviço',
+                      label: 'Hora/Término do serviço',
+                      inputType: TextInputType.datetime,
+                      inputFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        HoraInputFormatter(),
+                      ],
+                      onSaved: (hourEndService) {
+                        _checklist.hourEndService = hourEndService;
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

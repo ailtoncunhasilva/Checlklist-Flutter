@@ -57,6 +57,12 @@ class MyPdf extends StatelessWidget {
     Uint8List temp7 = await downloadImg('${checklist.photos[7]}');
     PdfImage image7 = PdfImage.file(pdf.document, bytes: temp7);
 
+    Uint8List temp8 = await downloadImg('${checklist.photos[8]}');
+    PdfImage image8 = PdfImage.file(pdf.document, bytes: temp8);
+
+    Uint8List temp9 = await downloadImg('${checklist.photos[9]}');
+    PdfImage image9 = PdfImage.file(pdf.document, bytes: temp9);
+
     pdf.addPage(
       pw.Page(
         margin: pw.EdgeInsets.all(10),
@@ -68,104 +74,60 @@ class MyPdf extends StatelessWidget {
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
                 _containerForm2(
-                    'DEV-DOCUMENTO DE ENTRADA DE VEÍCULOS(CHECKLIST)'),
-                pw.Row(children: [
-                  _containerForm(281.50, 'ENTRADA DO VEÍCULO: ___/___/_____'),
-                  _containerForm(281.50, 'PREVISÃO DE ENTREGA: ___/___/_____'),
-                ]),
-                pw.Row(children: [
-                  _containerForm(281.50, 'PPLACA: ${checklist.placa}'),
-                  _containerForm(281.50, 'N.OS: ${checklist.id}'),
-                ]),
+                    'FORMULÁRIO DE ORDEM DE SERVIÇO(CHECKLIST)  N.OS ${checklist.id}'),
+                _containerForm(563, ''),
                 _containerForm2('DADOS DO CLIENTE'),
                 pw.Row(children: [
-                  _containerForm(400, 'NOME: ${checklist.name}'),
-                  _containerForm(163, 'CPF: ${checklist.cpf}')
+                  _containerForm(281.5,
+                      'POSSUI CADASTRO CONOSCO: ${checklist.registerList}'),
+                  _containerForm(
+                      281.5, 'CLIENTE P.F ou P.J: ${checklist.tipClient}')
                 ]),
                 pw.Row(children: [
-                  _containerForm(281.50, 'FONE/WHATSAPP: ${checklist.phone}'),
-                  _containerForm(281.50, 'E-MAIL: ${checklist.email}')
+                  _containerForm(283, 'CONDUTOR: ${checklist.name}'),
+                  _containerForm(140, 'CPF ou CNPJ: ${checklist.cpf}'),
+                  _containerForm(140, 'FONE: ${checklist.phone}'),
+                ]),
+                _containerForm(563, 'ENDEREÇO: ${checklist.address}'),
+                _containerForm2('OUTROS DADOS'),
+                pw.Row(children: [
+                  _containerForm(
+                      187.6, 'FORMA DE PAGAMENTO: ${checklist.paymentForm}'),
+                  _containerForm(
+                      187.6, 'TIPO DE SERVIÇO: ${checklist.typeService}'),
+                  _containerForm(187.6,
+                      'TIPO DE MANUTENÇÃO: ${checklist.typeMaintenance}'),
+                ]),
+                pw.Row(children: [
+                  _containerForm3(187.6, 'DATA/ENTRADA: ${checklist.dateIn}',
+                      ' / ${checklist.hourIn}'),
+                  _containerForm3(187.6, 'DATA/SAÍDA: ${checklist.dateOut}',
+                      ' / ${checklist.hourOut}'),
+                  _containerForm(
+                      187.6, 'PREVISÃO DE LIBERAÇÃO: ${checklist.release}'),
                 ]),
                 _containerForm2('DADOS DO VEÍCULO'),
                 pw.Row(children: [
-                  _containerForm(263, 'MARCA/MODELO: ${checklist.marca}'),
-                  _containerForm(150, 'ANO: ${checklist.yearModel}'),
                   _containerForm(
-                      150, 'TIPO COMBUSTÍVEL: ${checklist.combustivel}'),
+                      187.6, 'TIPO DO VEÍCULO: ${checklist.typeVehicle}'),
+                  _containerForm(187.6, 'MARCA/MODELO: ${checklist.marca}'),
+                  _containerForm(187.6, 'PLACA ${checklist.placa}'),
                 ]),
-                _containerForm(563, 'CHASSIS: ${checklist.chassis}'),
-                pw.Container(
-                  height: 14,
-                  width: double.maxFinite,
-                  child: pw.Container(
-                    padding: pw.EdgeInsets.only(left: 1, top: 3),
-                    decoration: pw.BoxDecoration(
-                      border: pw.Border.all(
-                        width: 1,
-                        color: PdfColors.black,
-                        style: pw.BorderStyle.solid,
-                      ),
-                    ),
-                    child: pw.Row(
-                      children: [
-                        pw.Text('  (   )AR ', style: style),
-                        pw.Text(' (   )ALARME ', style: style),
-                        pw.Text(' (   )DH.CÂMBIO ', style: style),
-                        pw.Text(' (   )AUTOMÁTICO ', style: style),
-                        pw.Text(' (   )AUTOMATIZADO ', style: style),
-                        pw.Text(' (   )CVT ', style: style),
-                        pw.Text(' (   )MANUAL ', style: style),
-                        pw.Text(' (   )ABS ', style: style),
-                        pw.Text(' (   )AIR BAG ', style: style),
-                        pw.Text(' (   )4X2 ', style: style),
-                        pw.Text(' (   )4X4 ', style: style),
-                      ],
-                    ),
-                  ),
-                ),
-                pw.Container(
-                  height: 90,
-                  width: double.maxFinite,
-                  decoration: pw.BoxDecoration(
-                    border: pw.Border.all(
-                      width: 1,
-                      color: PdfColors.black,
-                      style: pw.BorderStyle.solid,
-                    ),
-                  ),
-                  child: pw.Row(
-                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                    children: [
-                      _rowItens(
-                        '(   )ESTEPE',
-                        '(   )MACACO',
-                        '(   )CHAVE DE RODA',
-                        '(   )TRIÂNGULO',
-                        '(   )ANTENA',
-                        '(   )VIDRO ELÉTRICO',
-                      ),
-                      _rowItens(
-                        '(   )TRAVA ELÉTRICA',
-                        '(   )CALOTAS/RODAS DE LIGA',
-                        '(   )PÁRA BRISA TRINCADO',
-                        '(   )RÁDIO/MULTIMÍDIA',
-                        '(   )ALARME/CORTA CORRENTE',
-                        '(   )EXTINTOR',
-                      ),
-                      _rowItens(
-                        '(   )DOCUMENTO',
-                        '(   )BUZINA',
-                        '(   )PROTETOR DE CÁRTER',
-                        '(   )CHAVE SEGREDO(RODA)',
-                        '(   )TAPETES',
-                        '(   )ACENDEDOR/TOMADA 12V',
-                      ),
-                    ],
-                  ),
-                ),
+                pw.Row(children: [
+                  _containerForm(140, 'ANO: ${checklist.yearModel}'),
+                  _containerForm(140, 'COR: ${checklist.color}'),
+                  _containerForm(140, 'KM: ${checklist.km}'),
+                  _containerForm(
+                      143, 'NIVEL/COMBUSTÍVEL: ${checklist.fuelLevel}'),
+                ]),
+                pw.Row(children: [
+                  _containerForm(187.6, 'FROTA: ${checklist.frota}'),
+                  _containerForm(187.6, 'CHASSIS: ${checklist.chassis}'),
+                  _containerForm(187.6, 'RENAVAM: ${checklist.renavam}'),
+                ]),
                 _containerForm2('FOTOS DO VEÍCULO'),
                 pw.Container(
-                  height: 180,
+                  height: 270,
                   width: double.maxFinite,
                   decoration: pw.BoxDecoration(
                     border: pw.Border.all(
@@ -195,99 +157,46 @@ class MyPdf extends StatelessWidget {
                             _containerImage(image7),
                           ],
                         ),
+                        pw.SizedBox(height: 12),
+                        pw.Row(
+                          children: [
+                            _containerImage(image8),
+                            _containerImage(image9),
+                          ],
+                        ),
                       ],
                     ),
                   ),
                 ),
-                _containerForm2(
-                    'SERVIÇOS SOLICITADOS(INSPEÇÃO/MANUTENÇÃO/REPARAÇÃO'),
-                _containerForm(double.maxFinite, ''),
-                _containerForm(double.maxFinite, ''),
-                _containerForm(double.maxFinite, ''),
-                _containerForm(double.maxFinite, ''),
-                _containerForm(double.maxFinite, 'OBS.:'),
-                _containerForm(double.maxFinite, ''),
-                _containerForm2('CONDIÇÕES GERAIS'),
+                _containerForm2('OCORRÊNCIA PARA ORÇAMENTO'),
                 pw.Container(
-                  height: 60,
-                  width: double.maxFinite,
-                  decoration: pw.BoxDecoration(
-                    border: pw.Border.all(
-                      width: 1,
-                      color: PdfColors.black,
-                      style: pw.BorderStyle.solid,
-                    ),
-                  ),
-                  child: pw.Column(
-                    children: [
-                      pw.Text(
-                        ' 1.Para serviços de sinistro contratados pela seguradores, o cliente está ciente que as peças necessárias para total reparação'
-                        'do veículo serão fornecidas pela seguradora e que, portanto, os serviços apenas serão iniciados quando as peças forem'
-                        'entregues.(para oficinas que trabalhem com seguradoras)\n 2.O cliente autoriza, se necessário, a saída do veículo para execução'
-                        'de testes fora das instalações da oficina, ficando ciente que, em caso de acidente, a responsabilidade da Empresa Reparadora'
-                        'estará limitada a danos causados em razão do sinistro.\n 3.O cliente está ciente e concorda que esta Empresa Reparadora cobrará'
-                        'pelos serviços de diagnóstico que realizar, no valor até _____horas técnicas. Valor da hora técnica: R\$______,00'
-                        '(__________________)reais.\n 4.O cliente autoriza o portador abaixo qualificado a assinar o presente DEV e a retirar seu'
-                        'veículo, quando da entrega do mesmo reparado.(Quando a pessoa não é a mesma qualificada no documento CRLV do veículo)',
-                        maxLines: null,
-                        style: pw.TextStyle(
-                          fontSize: 6,
-                        ),
-                      ),
-                      pw.Center(
-                        child: pw.Text(
-                          'A OFICINA NÃO SE RESPONSABILIZA POR OBJETOS DEIXADOS DENTRO DO VEÍCULO(SOLICITE SACOLA PLÁSTICA)',
-                          style: pw.TextStyle(
-                            fontSize: 6,
-                            fontWeight: pw.FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                _containerForm(
-                    double.maxFinite,
-                    'CONFIRMO QUE O VEÍCULO ENCONTRA-SE NAS CONDIÇÕES AQUI APRESENTADOS.'
-                    'SOBRE AS QUAIS AFIRMO TER SIDO PREVIAMENTE INFORMADO(A).'),
-                _containerForm2('ASSINATURAS'),
-                pw.Row(
-                  children: [
-                    _signature('RESPONSÁVEL PELO PREENCHIMENTO', 200),
-                    _signature(
-                        ' (  )CLIENTE  (  )GUINCHEIRO  (  )PORTEIRO  (  )MOTORISTA',
-                        250),
-                    _signature('RG', 113),
-                  ],
-                ),
+                    height: 50,
+                    child: _containerForm(563,
+                        'DESCRIÇÃO DOS PROBLEMAS: ${checklist.observation}')),
+                _containerForm2('APÓS APROVAÇÃO DO SERVIÇO'),
+                pw.Container(
+                    height: 50,
+                    child: _containerForm(563,
+                        'PEÇAS FORNECIDAS PELO CLIENTE: ${checklist.parts}')),
+                pw.Container(
+                    height: 60,
+                    child: _containerForm(
+                        563, 'SERVIÇOS EXECUTADOS: ${checklist.parts}')),
+                _containerForm(563, 'MECÂNICO: ${checklist.mechanic}'),
+                pw.Row(children: [
+                  _containerForm3(
+                      281.5,
+                      'DATA/HORA DO INÍCIO DO SERVIÇO: ${checklist.dateInitService}',
+                      ' / ${checklist.hourInitService}'),
+                  _containerForm3(
+                      281.5,
+                      'DATA/HORA DO FIM DO SERVIÇO: ${checklist.dateEndService}',
+                      ' / ${checklist.hourEndService}'),
+                ]),
+                _containerForm(double.maxFinite, 'CLIENTE: '),
               ],
             ),
           );
-          /*pw.Column(
-            children: [
-              pw.Container(
-                child: pw.Text(checklist.id),
-              ),
-              pw.Row(
-                children: [
-                  pw.Container(
-                    height: 80,
-                    width: 70,
-                    child: pw.Center(
-                      child: pw.Image(image),
-                    ),
-                  ),
-                  pw.Container(
-                    height: 80,
-                    width: 70,
-                    child: pw.Center(
-                      child: pw.Image(image1),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          );*/
         },
       ),
     );
@@ -423,6 +332,37 @@ pw.Widget _containerForm2(String text) {
         color: PdfColors.black,
         style: pw.BorderStyle.solid,
       ),
+    ),
+  );
+}
+
+pw.Widget _containerForm3(double width, String text, String text1) {
+  return pw.Container(
+    height: 14,
+    width: width,
+    padding: pw.EdgeInsets.only(left: 1, top: 3),
+    decoration: pw.BoxDecoration(
+      border: pw.Border.all(
+        width: 1,
+        color: PdfColors.black,
+        style: pw.BorderStyle.solid,
+      ),
+    ),
+    child: pw.Row(
+      children: [
+        pw.Text(
+          text,
+          style: pw.TextStyle(
+            fontSize: 8,
+          ),
+        ),
+        pw.Text(
+          text1,
+          style: pw.TextStyle(
+            fontSize: 8,
+          ),
+        ),
+      ],
     ),
   );
 }

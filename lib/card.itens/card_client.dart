@@ -136,7 +136,7 @@ class _CardClientState extends State<CardClient> {
                             },
                             inputType: TextInputType.number,
                             inputBorder: border,
-                            validator: (text) {
+                            validator: itemRegisterSelected == 'Sim' ? null : (text) {
                               return Validador()
                                   .add(Validar.CPF, msg: 'CPF inválido')
                                   .add(Validar.OBRIGATORIO,
@@ -152,7 +152,7 @@ class _CardClientState extends State<CardClient> {
                             },
                             inputType: TextInputType.number,
                             inputBorder: border,
-                            validator: (text) {
+                            validator: itemRegisterSelected == 'Sim' ? null : (text) {
                               return Validador()
                                   .add(Validar.CNPJ, msg: 'CNPJ inválido')
                                   .add(Validar.OBRIGATORIO,
