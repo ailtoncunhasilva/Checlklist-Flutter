@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
                           }
                         },
                         child: Text(
-                          'Checklist',
+                          'Iniciar Checklist',
                           style: TextStyle(
                             color: Colors.white,
                           ),
